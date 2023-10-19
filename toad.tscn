@@ -1,0 +1,84 @@
+[gd_scene load_steps=12 format=3 uid="uid://cp61v60i0a0si"]
+
+[ext_resource type="Texture2D" uid="uid://dnnnmxwyodc3m" path="res://super-bazza-bogan/toad.png" id="1_3hnga"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ig6ip"]
+atlas = ExtResource("1_3hnga")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yamb8"]
+atlas = ExtResource("1_3hnga")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gtxdf"]
+atlas = ExtResource("1_3hnga")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0ott"]
+atlas = ExtResource("1_3hnga")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xnhca"]
+atlas = ExtResource("1_3hnga")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pte6w"]
+atlas = ExtResource("1_3hnga")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_67kjw"]
+atlas = ExtResource("1_3hnga")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7wlj"]
+atlas = ExtResource("1_3hnga")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l2fwc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ig6ip")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yamb8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gtxdf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c0ott")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xnhca")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pte6w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_67kjw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s7wlj")
+}],
+"loop": true,
+"name": &"hop",
+"speed": 4.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v2m0c"]
+radius = 7.0
+height = 18.0
+
+[node name="Toad" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_l2fwc")
+animation = &"hop"
+frame_progress = 0.907758
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_v2m0c")
+debug_color = Color(0.996078, 0, 0.196078, 0.419608)

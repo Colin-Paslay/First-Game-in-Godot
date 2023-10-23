@@ -1,7 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://cacktm25e2nlt"]
+[gd_scene load_steps=13 format=3 uid="uid://cacktm25e2nlt"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_a1qow"]
 [ext_resource type="Texture2D" uid="uid://cygfyu1u35uwn" path="res://super-bazza-bogan/bazzabogan.png" id="1_b0t6v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q8ikl"]
+atlas = ExtResource("1_b0t6v")
+region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eusa1"]
 atlas = ExtResource("1_b0t6v")
@@ -25,6 +29,14 @@ region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_muk76"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q8ikl")
+}],
+"loop": true,
+"name": &"ded",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_eusa1")
@@ -57,14 +69,40 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q157m"]
+radius = 8.0
+height = 32.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_isuh3"]
+size = Vector2(24, 27)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sb1g0"]
+size = Vector2(29, 6)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_a1qow")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_muk76")
-animation = &"run"
-frame_progress = 0.578116
+animation = &"ded"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_q157m")
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_isuh3")
+debug_color = Color(0.898039, 0.219608, 0.564706, 0.419608)
+
+[node name="feet" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="feet"]
+position = Vector2(0.5, 13)
+shape = SubResource("RectangleShape2D_sb1g0")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]

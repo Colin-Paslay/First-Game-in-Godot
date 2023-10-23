@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://c6qotwbqj30it"]
+[gd_scene load_steps=8 format=3 uid="uid://c6qotwbqj30it"]
 
 [ext_resource type="Texture2D" uid="uid://rcsr5tacasyj" path="res://super-bazza-bogan/block.png" id="1_qv47i"]
 [ext_resource type="Texture2D" uid="uid://cyglnu1rk2vey" path="res://super-bazza-bogan/brick.png" id="2_3rycd"]
 [ext_resource type="PackedScene" uid="uid://cacktm25e2nlt" path="res://player.tscn" id="3_vfn3r"]
+[ext_resource type="PackedScene" uid="uid://cp61v60i0a0si" path="res://toad.tscn" id="4_nt0s8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0v1ja"]
 texture = ExtResource("1_qv47i")
@@ -39,3 +40,6 @@ offset = Vector2(0, -50)
 zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
+
+[node name="Toad" parent="TileMap" instance=ExtResource("4_nt0s8")]
+position = Vector2(840, 343)

@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+var is_alive = true
 var is_jumping = false
 
 const SPEED = 300.0
@@ -9,6 +10,9 @@ const JUMP_VELOCITY = -400.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
+
+func _ready():
+	add_to_group("Player")
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -40,5 +44,14 @@ func update_animation(direction):
 	elif direction != 0:
 		animated_sprite_2d.flip_h = (direction < 0)
 		animated_sprite_2d.play("run")
+	elif is_alive == false:
+		animated_sprite_2d.play("ded")
 	else:
 		animated_sprite_2d.play("idle")
+
+
+
+func _on_hitbox_body_entered(body):
+	if body.is_in_group("Enemy") and body.is_alive:
+		is_alive = false
+		get_tree().reload_current_scene()

@@ -10,18 +10,23 @@ const JUMP_VELOCITY = -400.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
+@onready var death_timer = $death_timer
 
 func _ready():
 	add_to_group("Player")
+	death_timer.connect("timeout", Callable(self, "_on_DeathTimer_timeout"))
 
 func _physics_process(delta):
+	if is_alive == false:
+		return
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	else:
 		is_jumping = false
 
-	# Handle Jump.
+	# Handle Jump
 	if Input.is_action_just_pressed("ui_up") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 		is_jumping = true
@@ -44,8 +49,6 @@ func update_animation(direction):
 	elif direction != 0:
 		animated_sprite_2d.flip_h = (direction < 0)
 		animated_sprite_2d.play("run")
-	elif is_alive == false:
-		animated_sprite_2d.play("ded")
 	else:
 		animated_sprite_2d.play("idle")
 
@@ -53,5 +56,24 @@ func update_animation(direction):
 
 func _on_hitbox_body_entered(body):
 	if body.is_in_group("Enemy") and body.is_alive:
-		is_alive = false
-		get_tree().reload_current_scene()
+		die()
+func die():
+	if is_alive == false:
+		return
+	is_alive = false
+	animated_sprite_2d.play("ded")
+	await death_bounce()
+	get_tree().reload_current_scene()
+func death_bounce():
+	var start_position = position
+	var up_position = start_position + Vector2(0,-100)
+	var down_position = start_position + Vector2(0,70)
+	while position.y > up_position.y:
+		position.y -= 4
+		await get_tree().create_timer(0.001).timeout
+	while position.y < down_position.y:
+		position.y += 4
+		await get_tree().create_timer(0.001).timeout
+func death_timer_activate():
+	get_tree().reload_current_scene()
+	

@@ -36,8 +36,10 @@ layer_0/tile_data = PackedInt32Array(-131085, 0, 0, -65549, 0, 0, -13, 0, 0, 655
 position = Vector2(-14, 232)
 
 [node name="Camera2D" type="Camera2D" parent="TileMap/Player"]
-offset = Vector2(0, -50)
-zoom = Vector2(2, 2)
+offset = Vector2(0, -10)
+zoom = Vector2(3, 3)
+limit_bottom = 600
+limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 

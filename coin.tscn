@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://ds7wbx2khecu"]
+
+[ext_resource type="Texture2D" uid="uid://bmgxtxy0dbxy1" path="res://super-bazza-bogan/coin.png" id="2_exf5m"]
+[ext_resource type="Script" path="res://coin.gd" id="2_wf3cf"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4wrai"]
+
+[node name="coin" type="Sprite2D"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_exf5m")
+script = ExtResource("2_wf3cf")
+
+[node name="interaction" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interaction"]
+shape = SubResource("CapsuleShape2D_4wrai")
+
+[connection signal="area_entered" from="interaction" to="." method="_on_interaction_area_entered"]
+[connection signal="body_entered" from="interaction" to="." method="_on_interaction_body_entered"]

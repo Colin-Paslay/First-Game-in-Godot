@@ -5,6 +5,10 @@
 [node name="coin_gui" type="CanvasLayer"]
 script = ExtResource("1_6gn54")
 
-[node name="Label" type="Label" parent="."]
+[node name="coins" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="lives" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0

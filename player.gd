@@ -41,7 +41,6 @@ func _physics_process(delta):
 	
 	update_animation(direction)
 	move_and_slide()
-
 func update_animation(direction):
 	if is_jumping:
 		animated_sprite_2d.flip_h = (direction < 0)
@@ -63,7 +62,14 @@ func die():
 	is_alive = false
 	animated_sprite_2d.play("ded")
 	await death_bounce()
-	get_tree().reload_current_scene()
+	Global.player_lives -= 1
+	if Global.player_lives > 0:
+		print("reloading world...")
+		get_tree().reload_current_scene()
+		is_alive = true
+	else:
+		queue_free()
+		#get_tree).change_scene_to_file("res://gameover.tscn")
 func death_bounce():
 	var start_position = position
 	var up_position = start_position + Vector2(0,-100)

@@ -68,8 +68,7 @@ func die():
 		get_tree().reload_current_scene()
 		is_alive = true
 	else:
-		queue_free()
-		#get_tree).change_scene_to_file("res://gameover.tscn")
+		get_tree().change_scene_to_file("res://gameover.tscn")
 func death_bounce():
 	var start_position = position
 	var up_position = start_position + Vector2(0,-100)

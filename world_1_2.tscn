@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dscl8npu875pe"]
+[gd_scene load_steps=15 format=3 uid="uid://dscl8npu875pe"]
 
 [ext_resource type="Texture2D" uid="uid://eccg6qajuejd" path="res://super-bazza-bogan/lvl2-brick.png" id="1_bo3x8"]
 [ext_resource type="Texture2D" uid="uid://yxkeiwtdg1gk" path="res://super-bazza-bogan/lvl2-block.png" id="2_ui4nw"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cp61v60i0a0si" path="res://toad.tscn" id="6_udowk"]
 [ext_resource type="Script" path="res://world_1_2.gd" id="7_e7i0p"]
 [ext_resource type="PackedScene" uid="uid://dav5k6127hb7h" path="res://coin_gui.tscn" id="7_imui1"]
+[ext_resource type="PackedScene" uid="uid://bef03kbmjsp87" path="res://questionblock.tscn" id="9_i6jme"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k24ae"]
 texture = ExtResource("1_bo3x8")
@@ -93,5 +94,8 @@ shape = SubResource("RectangleShape2D_kbs7l")
 debug_color = Color(0.956863, 0, 0.541176, 0.419608)
 
 [node name="coin_gui" parent="." instance=ExtResource("7_imui1")]
+
+[node name="questionblock" parent="." instance=ExtResource("9_i6jme")]
+position = Vector2(897, 417)
 
 [connection signal="body_entered" from="interact" to="." method="_on_interact_body_entered"]

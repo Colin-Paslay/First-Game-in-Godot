@@ -14,7 +14,13 @@ func _on_body_entered(body):
 func bump_block():
 	state = State.BUMPED
 	$Sprite2D.frame = 1
-	Global.spawn_beer_bottle(self.global_position + Vector2(0, -20))
+	
+	match Global.current_state:
+		Global.PlayerState.SMALL:
+			Global.spawn_beer_bottle(self.global_position + Vector2(0, -28))
+		Global.PlayerState.BIG, Global.PlayerState.FLIP_FLOP:
+			Global.spawn_flip_flop_power_up(self.global_position + Vector2(0, -32))
+	
 	bump_upwards()
 	var timer = get_tree().create_timer(0.2)
 	await timer.timeout

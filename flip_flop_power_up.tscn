@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=3 uid="uid://jeywyjkwj1ax"]
+
+[ext_resource type="Script" path="res://flip_flop_power_up.gd" id="1_st7ky"]
+[ext_resource type="Texture2D" uid="uid://ph04ly5q4duh" path="res://super-bazza-bogan/thong.png" id="2_hgqc8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxjgx"]
+atlas = ExtResource("2_hgqc8")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u433j"]
+atlas = ExtResource("2_hgqc8")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gqxx"]
+atlas = ExtResource("2_hgqc8")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5dcet"]
+atlas = ExtResource("2_hgqc8")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_krum2"]
+atlas = ExtResource("2_hgqc8")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_77utq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxjgx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u433j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4gqxx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5dcet")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_krum2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qi34v"]
+radius = 16.0
+
+[node name="flip_flop_power_up" type="Area2D"]
+script = ExtResource("1_st7ky")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_77utq")
+frame_progress = 0.855984
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_qi34v")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
